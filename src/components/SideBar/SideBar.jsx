@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import Drawer from 'material-ui/Drawer'
-import { withRouter } from 'react-router-dom'
-// import Button from 'material-ui/Button'
+import { Link } from 'react-router-dom'
 import List, {
   ListItem,
   ListItemIcon,
@@ -22,9 +21,6 @@ const styles = {
 }
 
 class TemporaryDrawer extends React.Component {
-  goDetail = ()=> {
-    this.props.history.push('/tags')
-  }
   render() {
     const { classes } = this.props
 
@@ -32,11 +28,23 @@ class TemporaryDrawer extends React.Component {
       <div className={classes.list}>
         <ListSubheader>MENU</ListSubheader>
         <List>
-          <ListItem button onClick={this.goDetail}>
+          <ListItem button component={Link} to="/" >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemText primary="Memo" />
+          </ListItem>
+          <ListItem button component={Link} to="/tags" >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tags" />
+          </ListItem>
+          <ListItem button component={Link} to="/star" >
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Star" />
           </ListItem>
         </List>
       </div>
@@ -63,4 +71,4 @@ TemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withRouter(withStyles(styles)(TemporaryDrawer))
+export default withStyles(styles)(TemporaryDrawer)
