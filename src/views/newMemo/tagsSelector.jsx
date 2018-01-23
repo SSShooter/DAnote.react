@@ -1,34 +1,43 @@
-import React from 'react';
-import ListSubheader from 'material-ui/List/ListSubheader';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
+import React from 'react'
+import ListSubheader from 'material-ui/List/ListSubheader'
+import List, { ListItem } from 'material-ui/List'
+import Avatar from 'material-ui/Avatar'
+import Chip from 'material-ui/Chip'
+// import Icon from 'material-ui/Icon'
 
 class TagsSelector extends React.Component {
-  handleClick = () => {
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      chips: ['videogame_asset', 'face', 'book', 'location_on']
+    }
   }
-  handleDelete = () => {
-
-  }
-  async render() {
-    let FaceIcon = await import('material-ui-icons/Face')
+  handleClick = () => {}
+  handleDelete = () => {}
+  render() {
     return (
       <List subheader={<ListSubheader>Tags</ListSubheader>}>
-        <ListItem>
-          <Chip
-            avatar={
-              <Avatar>
-                <FaceIcon />
-              </Avatar>
-            }
-            label="happy"
-            onClick={this.handleClick}
-            onDelete={this.handleDelete}
-          />
-
-        </ListItem>
+        <div style={{ padding: '0 15px' }}>
+          {this.state.chips.map(icon => (
+            <Chip
+              key={icon}
+              style={{ margin: '0 10px 15px 0' }}
+              avatar={
+                <Avatar>
+                  <i
+                    className="material-icons"
+                    style={{ width: 'auto', height: 'auto' }}
+                  >
+                    {icon}
+                  </i>
+                </Avatar>
+              }
+              label={icon}
+              onClick={this.handleClick}
+              onDelete={this.handleDelete}
+            />
+          ))}
+        </div>
       </List>
     )
   }

@@ -1,8 +1,23 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 import TagsSelector from './tagsSelector'
+import TagsSelectDialog from './tagsSelectDialog'
 
 class NewMemo extends React.Component {
+  state = {
+    open: false
+  }
+
+  handleClickOpen = () => {
+    console.log('open')
+    this.setState({
+      open: true
+    })
+  }
+
+  handleClose = value => {
+    this.setState({ selectedValue: value, open: false })
+  }
   render() {
     return (
       <div>
@@ -22,7 +37,11 @@ class NewMemo extends React.Component {
             fullWidth
           />
         </div>
-        <TagsSelector />
+        {/* onClick只作用于dom元素 */}
+        <div onClick={this.handleClickOpen}>
+          <TagsSelector />
+        </div>
+        <TagsSelectDialog open={this.state.open} onClose={this.handleClose} />
       </div>
     )
   }

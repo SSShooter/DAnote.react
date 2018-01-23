@@ -42,7 +42,7 @@ class ButtonAppBar extends React.Component {
           <Toolbar>
             <IconButton
               className={classes.menuButton}
-              color="contrast"
+              color="inherit"
               aria-label="Menu"
               onClick={this.toggleDrawer}
             >
@@ -51,7 +51,7 @@ class ButtonAppBar extends React.Component {
             <Typography type="title" color="inherit" className={classes.flex}>
               Title
             </Typography>
-            <Button color="contrast">Login</Button>
+            <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
         <SideBar open={this.state.switch} onSideBarClose={this.toggleDrawer}/>
