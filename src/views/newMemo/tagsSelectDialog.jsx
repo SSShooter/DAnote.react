@@ -8,13 +8,8 @@ import List, {
   ListItemText
 } from 'material-ui/List'
 import Checkbox from 'material-ui/Checkbox'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import IconButton from 'material-ui/IconButton'
-import Typography from 'material-ui/Typography'
-import CloseIcon from 'material-ui-icons/Close'
-import Button from 'material-ui/Button'
 import Slide from 'material-ui/transitions/Slide'
+import nexus from '@/api'
 
 function Transition(props) {
   return <Slide direction="up" {...props} />
@@ -26,8 +21,19 @@ class TagsSelectorDialog extends React.Component {
     tags: ['videogame_asset', 'face', 'book', 'location_on'],
     checked: []
   }
-  componentDidMount = () => {}
-
+  componentDidMount = () => {
+    nexus
+      .get('/tag')
+      .then(res => {
+        console.log(res)
+        this.setState({
+          tags: res
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   handleClose = () => {
     this.props.onClose()
   }
@@ -59,21 +65,21 @@ class TagsSelectorDialog extends React.Component {
       >
         <SearchBar onClose={this.handleClose}/>
         <List>
-          {this.state.tags.map(icon => (
-            <ListItem button key={icon}>
+          {this.state.tags.map(tag => (
+            <ListItem button key={tag.name}>
               <ListItemIcon>
                 <i
                   className="material-icons"
                   style={{ width: 'auto', height: 'auto' }}
                 >
-                  {icon}
+                  {tag.icon}
                 </i>
               </ListItemIcon>
-              <ListItemText primary={icon} />
+              <ListItemText primary={tag.name} />
               <ListItemSecondaryAction>
                 <Checkbox
-                  onChange={this.handleToggle(icon)}
-                  checked={this.state.checked.indexOf(icon) !== -1}
+                  onChange={this.handleToggle(tag.name)}
+                  checked={this.state.checked.indexOf(tag.name) !== -1}
                 />
               </ListItemSecondaryAction>
             </ListItem>
