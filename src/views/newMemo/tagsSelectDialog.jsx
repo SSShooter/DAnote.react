@@ -27,13 +27,11 @@ class TagsSelectorDialog extends React.Component {
     checked: []
   }
   componentDidMount = () => {}
+
   handleClose = () => {
     this.props.onClose()
   }
 
-  handleListItemClick = value => {
-    this.props.onClose(value)
-  }
   handleToggle = value => () => {
     const { checked } = this.state
     const currentIndex = checked.indexOf(value)
@@ -59,7 +57,7 @@ class TagsSelectorDialog extends React.Component {
         transition={Transition}
         fullScreen
       >
-        <SearchBar onRequestSearch={this.handleSearch} />
+        <SearchBar onClose={this.handleClose}/>
         <List>
           {this.state.tags.map(icon => (
             <ListItem button key={icon}>

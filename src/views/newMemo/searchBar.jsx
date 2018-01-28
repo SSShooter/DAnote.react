@@ -12,8 +12,12 @@ let inputStyle = {
   flexGrow: 1
 }
 
-let iconStyle = {
-  
+let searchIconStyle = {
+  marginLeft:'16px'
+}
+
+let clearIconStyle = {
+  marginRight:'16px'
 }
 
 class SearchBar extends React.Component {
@@ -26,11 +30,11 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div style={searchBarStyle}>
-        <i className="material-icons" style={iconStyle}>
+        <i className="material-icons" style={searchIconStyle}>
           search
         </i>
         <input type="text" style={inputStyle} />
-        <i className="material-icons" style={iconStyle}>
+        <i className="material-icons" style={clearIconStyle} onClick={this.props.onClose}>
           clear
         </i>
       </div>
