@@ -10,25 +10,25 @@ import List, {
 import Checkbox from 'material-ui/Checkbox'
 import Slide from 'material-ui/transitions/Slide'
 import nexus from '@/api'
+import { observer } from 'mobx-react'
 
 function Transition(props) {
   return <Slide direction="up" {...props} />
 }
 
+@observer
 class TagsSelectorDialog extends React.Component {
   state = {
     keyword: '',
-    tags: ['videogame_asset', 'face', 'book', 'location_on'],
-    checked: []
+    checked: [],
+    tags:[]
   }
   componentDidMount = () => {
     nexus
       .get('/tag')
       .then(res => {
         console.log(res)
-        this.setState({
-          tags: res
-        })
+        this.state.tags = res
       })
       .catch(err => {
         console.log(err)
@@ -63,7 +63,7 @@ class TagsSelectorDialog extends React.Component {
         transition={Transition}
         fullScreen
       >
-        <SearchBar onClose={this.handleClose}/>
+        <SearchBar onClose={this.handleClose} />
         <List>
           {this.state.tags.map(tag => (
             <ListItem button key={tag.name}>
@@ -89,4 +89,5 @@ class TagsSelectorDialog extends React.Component {
     )
   }
 }
+
 export default TagsSelectorDialog
