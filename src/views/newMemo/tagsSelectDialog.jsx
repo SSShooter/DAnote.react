@@ -10,25 +10,26 @@ import List, {
 import Checkbox from 'material-ui/Checkbox'
 import Slide from 'material-ui/transitions/Slide'
 import nexus from '@/api'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 function Transition(props) {
   return <Slide direction="up" {...props} />
 }
 
+@inject('store')
 @observer
 class TagsSelectorDialog extends React.Component {
   state = {
     keyword: '',
     checked: [],
-    tags:[]
+    tags: []
   }
   componentDidMount = () => {
+    console.log('tags', this.props.store.tags)
     nexus
       .get('/tag')
       .then(res => {
         console.log(res)
-        this.state.tags = res
       })
       .catch(err => {
         console.log(err)

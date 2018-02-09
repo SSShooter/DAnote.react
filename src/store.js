@@ -1,6 +1,6 @@
 import { observable } from 'mobx'
 
-export default class Store {
+class Store {
   @observable
   todos = [
     {
@@ -8,5 +8,8 @@ export default class Store {
       done: false
     }
   ]
-  @observable tags = []
+  @observable tags = ['ei']
 }
+
+let store = new Store()
+export default store

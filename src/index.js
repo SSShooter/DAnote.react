@@ -5,13 +5,15 @@ import AppBar from './components/AppBar/AppBar'
 import MainPage from './router/index'
 import registerServiceWorker from './registerServiceWorker'
 
-import Store from './store'
-import { observer } from 'mobx-react'
+import store from './store'
+import { observer, Provider } from 'mobx-react'
+
+import DevTools from 'mobx-react-devtools'
 
 @observer
 class App extends React.Component {
-  componentDidMount = () =>{
-    console.log(this.props.store)
+  componentDidMount = () => {
+    // console.log(this.props.store)
   }
   render() {
     return (
@@ -19,12 +21,17 @@ class App extends React.Component {
         <div>
           <AppBar />
           <MainPage />
+          <DevTools />
         </div>
       </Router>
     )
   }
 }
 
-const store = new Store()
-ReactDOM.render(<App store={store} />, document.getElementById('root'))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
 registerServiceWorker()

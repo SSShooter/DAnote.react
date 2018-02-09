@@ -1,6 +1,6 @@
 import React from 'react'
 import ListSubheader from 'material-ui/List/ListSubheader'
-import List, { ListItem } from 'material-ui/List'
+import List from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import Chip from 'material-ui/Chip'
 // import Icon from 'material-ui/Icon'
