@@ -4,7 +4,7 @@ let nexus = axios.create()
 nexus.interceptors.request.use(
   function(config) {
     // Do something before request is sent
-    config.baseURL = 'http://120.25.96.50:1337'
+    config.baseURL = 'http://localhost:8090'
     return config
   },
   function(error) {

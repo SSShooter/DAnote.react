@@ -18,11 +18,11 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <React.Fragment>
           <AppBar />
           <MainPage />
           <DevTools />
-        </div>
+        </React.Fragment>
       </Router>
     )
   }

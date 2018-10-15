@@ -22,7 +22,6 @@ function FolderList(props) {
         </ListItem>
       </List>
       <Button
-        fab
         mini
         color="primary"
         aria-label="add"

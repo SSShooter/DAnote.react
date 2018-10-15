@@ -9,7 +9,6 @@ class NewMemo extends React.Component {
   }
 
   handleClickOpen = () => {
-    console.log('open')
     this.setState({
       open: true
     })

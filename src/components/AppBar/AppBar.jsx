@@ -8,6 +8,8 @@ import Button from 'material-ui/Button'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 
+import { Route } from 'react-router-dom'
+
 import SideBar from '../SideBar/SideBar'
 
 const styles = {
@@ -27,7 +29,6 @@ class ButtonAppBar extends React.Component {
   state = {
     switch: false
   }
-
   toggleDrawer = () => {
     this.setState({
       switch: !this.state.switch
@@ -48,17 +49,32 @@ class ButtonAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit" className={classes.flex}>
-              Title
-            </Typography>
-            <Button color="inherit">Login</Button>
+            <Route path="/" exact component={HomeBar} />
+            <Route path="/new" exact component={DetailBar} />
           </Toolbar>
         </AppBar>
-        <SideBar open={this.state.switch} onSideBarClose={this.toggleDrawer}/>
+        <SideBar open={this.state.switch} onSideBarClose={this.toggleDrawer} />
       </div>
     )
   }
 }
+
+const DetailBar = () => (
+  <React.Fragment>
+    <Typography type="title" color="inherit" style={{flexGrow: 1}}>
+      Title
+    </Typography>
+    <Button color="inherit">save</Button>
+  </React.Fragment>
+)
+
+const HomeBar = () => (
+  <React.Fragment>
+    <Typography type="title" color="inherit" style={{flexGrow: 1}}>
+      Home
+    </Typography>
+  </React.Fragment>
+)
 
 ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired
